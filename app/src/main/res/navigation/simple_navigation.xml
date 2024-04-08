@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/simple_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.a160420137nmpprojectuts.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/toRegisterFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.a160420137nmpprojectuts.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/toLoginFragment"
+            app:destination="@id/loginFragment" />
+        <argument
+            android:name="Username"
+            app:argType="string" />
+        <argument
+            android:name="Password"
+            app:argType="string" />
+        <argument
+            android:name="Email"
+            app:argType="string" />
+        <argument
+            android:name="RePassword"
+            app:argType="string" />
+        <argument
+            android:name="First Name"
+            app:argType="string" />
+        <argument
+            android:name="Last Name"
+            app:argType="string" />
+    </fragment>
+</navigation>
