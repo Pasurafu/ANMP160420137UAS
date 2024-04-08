@@ -28,26 +28,9 @@
         android:id="@+id/homeFragment"
         android:name="com.example.a160420137nmpprojectuts.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <argument
-        android:name="Username"
-        app:argType="string" />
-    <argument
-        android:name="Password"
-        app:argType="string" />
-    <argument
-        android:name="Email"
-        app:argType="string" />
-    <argument
-        android:name="RePassword"
-        app:argType="string" />
-    <argument
-        android:name="First Name"
-        app:argType="string" />
-    <argument
-        android:name="Last Name"
-        app:argType="string" />
-    <action
-        android:id="@+id/toHomeFragment"
-        app:destination="@id/homeFragment" />
+        tools:layout="@layout/fragment_home"
+
+        />
+
+
 </navigation>
