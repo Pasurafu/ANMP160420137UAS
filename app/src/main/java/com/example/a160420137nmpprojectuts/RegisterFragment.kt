@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.example.a160420137nmpprojectuts.databinding.FragmentLoginBinding
+
 import com.example.a160420137nmpprojectuts.databinding.FragmentRegisterBinding
 
 
@@ -29,14 +29,10 @@ class RegisterFragment : Fragment() {
         }
         binding.btnRegister.setOnClickListener{
             val username=binding.txtUsername.text.toString()
-            val password=binding.txtPassword.text.toString()
-            val reentry=binding.txtReenterPassword.text.toString()
-            val email=binding.txtEmail.text.toString()
-            val firstname=binding.txtNamaDepan.text.toString()
-            val lastname=binding.txtNamaBelakang.text.toString()
+
             //will be implemented once Database is set.
-           // val action = RegisterFragmentDirections.toHomeFragment(username)
-           // Navigation.findNavController(it).navigate(action)
+            val action = RegisterFragmentDirections.toHomeFragment(username)
+           Navigation.findNavController(it).navigate(action)
 
         }
     }
