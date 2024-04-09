@@ -11,8 +11,11 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/toRegisterFragment"
+            android:id="@+id/loginToRegister"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/loginToHome"
+            app:destination="@id/itemHome" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -20,15 +23,16 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/toLoginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/registerToLogin"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment" />
         <action
-            android:id="@+id/toHomeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/registerToHome"
+            app:destination="@id/itemHome" />
 
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/itemHome"
         android:name="com.example.a160420137nmpprojectuts.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home"
@@ -36,7 +40,16 @@
         >
         <argument android:name="username"
             app:argType="string" />
+        <action
+            android:id="@+id/homeToLogin"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.example.a160420137nmpprojectuts.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 
 
 </navigation>

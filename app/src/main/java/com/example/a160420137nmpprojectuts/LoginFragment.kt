@@ -26,7 +26,15 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnRegister.setOnClickListener {
-            val action = LoginFragmentDirections.toRegisterFragment()
+            val action = LoginFragmentDirections.loginToRegister()
+            Navigation.findNavController(it).navigate(action)
+
+        }
+        binding.btnLogin.setOnClickListener{
+            val username=binding.txtUsername.text.toString()
+
+            //will be implemented once Database is set.
+            val action = LoginFragmentDirections.loginToHome(username)
             Navigation.findNavController(it).navigate(action)
 
         }
