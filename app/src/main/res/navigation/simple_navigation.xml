@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.a160420137nmpprojectuts.LoginFragment"
+        android:name="com.example.a160420137nmpprojectuts.view.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.a160420137nmpprojectuts.RegisterFragment"
+        android:name="com.example.a160420137nmpprojectuts.view.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/itemHome"
-        android:name="com.example.a160420137nmpprojectuts.HomeFragment"
+        android:name="com.example.a160420137nmpprojectuts.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home"
 
@@ -44,12 +44,20 @@
             android:id="@+id/homeToLogin"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment" />
+        <action
+            android:id="@+id/homeToDetail"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemProfile"
-        android:name="com.example.a160420137nmpprojectuts.ProfileFragment"
+        android:name="com.example.a160420137nmpprojectuts.view.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.a160420137nmpprojectuts.view.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 
 
 </navigation>

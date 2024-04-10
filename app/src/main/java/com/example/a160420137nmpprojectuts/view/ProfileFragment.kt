@@ -1,10 +1,11 @@
-package com.example.a160420137nmpprojectuts
+package com.example.a160420137nmpprojectuts.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.a160420137nmpprojectuts.R
 
 
 class ProfileFragment : Fragment() {

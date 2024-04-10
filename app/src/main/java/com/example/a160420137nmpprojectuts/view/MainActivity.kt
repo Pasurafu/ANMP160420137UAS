@@ -1,15 +1,13 @@
-package com.example.a160420137nmpprojectuts
+package com.example.a160420137nmpprojectuts.view
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
+import com.example.a160420137nmpprojectuts.R
 import com.example.a160420137nmpprojectuts.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
