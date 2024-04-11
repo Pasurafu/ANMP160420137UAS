@@ -40,6 +40,13 @@ class HomeFragment : Fragment() {
             val username = HomeFragmentArgs.fromBundle(requireArguments()).username
            // binding.txtTextView.text = "$username's Turn"
         }
+        binding.swiperefreshLayout.setOnRefreshListener {
+            binding.recyclerView.visibility = View.GONE
+            binding.txtError.visibility = View.GONE
+            binding.progressBar.visibility = View.VISIBLE
+            viewModel.refresh()
+            binding.swiperefreshLayout.isRefreshing = false
+        }
 
     }
     fun observeViewModel()
@@ -61,6 +68,7 @@ class HomeFragment : Fragment() {
             binding.progressBar.visibility = View.GONE
         }
         })
+
 
 
 
