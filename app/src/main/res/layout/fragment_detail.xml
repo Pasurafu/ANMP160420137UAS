@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.DetailFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- Photo of the news -->
+    <ImageView
+        android:id="@+id/imageViewGunpla"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        />
 
-</FrameLayout>
+    <!-- Title of the news -->
+    <TextView
+        android:id="@+id/txtNameD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewGunpla"
+        android:text="Title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="16dp" />
+
+    <!-- Username of the news creator -->
+    <TextView
+        android:id="@+id/txtDescD"
+        android:layout_width="match_parent"
+        android:layout_height="408dp"
+        android:layout_below="@id/txtNameD"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:text="Description"
+        android:textSize="18sp" />
+
+    <!-- ViewPager for multi-page content -->
+
+    <!-- Linear layout for navigation buttons -->
+    <LinearLayout
+        android:id="@+id/linearNavigationButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <!-- Button to navigate to previous page -->
+        <Button
+            android:id="@+id/btnPreviousPage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="<"
+            android:onClick="onPreviousPageClicked" />
+
+        <!-- Button to navigate to next page -->
+        <Button
+            android:id="@+id/btnNextPage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=">"
+            android:onClick="onNextPageClicked" />
+    </LinearLayout>
+
+</RelativeLayout>
