@@ -51,7 +51,7 @@ class ListViewModel(application: Application): AndroidViewModel(application)
         queue = Volley.newRequestQueue(getApplication() )
 
 
-        val url =
+        val url = "http://10.0.2.2/gunpla/gunpla.json"
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             {
