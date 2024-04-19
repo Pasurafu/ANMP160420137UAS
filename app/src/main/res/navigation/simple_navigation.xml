@@ -52,7 +52,11 @@
         android:id="@+id/itemProfile"
         android:name="com.example.a160420137nmpprojectuts.view.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/profileToLogin"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.a160420137nmpprojectuts.view.DetailFragment"

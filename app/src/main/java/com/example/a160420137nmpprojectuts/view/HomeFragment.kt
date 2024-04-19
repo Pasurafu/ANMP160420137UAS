@@ -36,10 +36,7 @@ class HomeFragment : Fragment() {
         binding.recyclerView.layoutManager=LinearLayoutManager(context)
         binding.recyclerView.adapter=studentListAdapter
         observeViewModel()
-        if (arguments != null) {
-            val username = HomeFragmentArgs.fromBundle(requireArguments()).username
-           // binding.txtTextView.text = "$username's Turn"
-        }
+
         binding.swiperefreshLayout.setOnRefreshListener {
             binding.recyclerView.visibility = View.GONE
             binding.txtError.visibility = View.GONE

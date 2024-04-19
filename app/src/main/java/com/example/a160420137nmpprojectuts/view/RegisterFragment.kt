@@ -17,8 +17,7 @@ import com.example.a160420137nmpprojectuts.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
-    val dbHelper = DatabaseHelper(requireContext())
-
+    private lateinit var dbHelper: DatabaseHelper
     // private lateinit var userViewModel: UserViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +30,7 @@ class RegisterFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        dbHelper = DatabaseHelper(requireContext())
         binding.btnBack.setOnClickListener {
             val action = RegisterFragmentDirections.registerToLogin()
             Navigation.findNavController(it).navigate(action)

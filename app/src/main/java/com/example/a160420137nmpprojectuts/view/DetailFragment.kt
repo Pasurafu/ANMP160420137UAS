@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private lateinit var viewModel: ListViewModel
+    private var currentGunplaIndex = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +38,14 @@ class DetailFragment : Fragment() {
         viewModel.gunplaLD.observe(viewLifecycleOwner) { gunplaList ->
             // Check if the list is not empty
             if (gunplaList.isNotEmpty()) {
-                val gunpla = gunplaList[0]
+                // Update currentGunplaIndex if it's out of bounds
+                if (currentGunplaIndex >= gunplaList.size) {
+                    currentGunplaIndex = gunplaList.size - 1
+                } else if (currentGunplaIndex < 0) {
+                    currentGunplaIndex = 0
+                }
+
+                val gunpla = gunplaList[currentGunplaIndex]
 
                 // Populate views with data from the Gunpla object
                 binding.txtNameD.text = gunpla.name
@@ -48,7 +56,6 @@ class DetailFragment : Fragment() {
             }
         }
 
-
         // Observe the LiveData for error state
         viewModel.gunplaLoadErrorLD.observe(viewLifecycleOwner) { isError ->
             Toast.makeText(requireContext(), "Failed to load Gunpla data", Toast.LENGTH_SHORT)
@@ -57,5 +64,17 @@ class DetailFragment : Fragment() {
 
         // Fetch the gunpla data
         viewModel.refresh()
+
+        // Set up click listeners for navigation buttons
+        binding.btnPreviousPage.setOnClickListener {
+            currentGunplaIndex--
+            viewModel.refresh()
+        }
+
+        binding.btnNextPage.setOnClickListener {
+            currentGunplaIndex++
+            viewModel.refresh()
+        }
     }
 }
+

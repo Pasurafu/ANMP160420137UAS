@@ -10,7 +10,7 @@ import androidx.navigation.ui.NavigationUI
 import com.example.a160420137nmpprojectuts.R
 import com.example.a160420137nmpprojectuts.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class  MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var drawerLayout: DrawerLayout
@@ -18,17 +18,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        navController =
-            (supportFragmentManager.findFragmentById(R.id.topFragment) as
-                    NavHostFragment).navController
-        NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        drawerLayout = binding.drawerLayout // Initialize drawerLayout
+
+        navController = (supportFragmentManager.findFragmentById(R.id.topFragment) as NavHostFragment).navController
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
-
     }
+
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navController,drawerLayout)
-                ||super.onSupportNavigateUp()
+        return NavigationUI.navigateUp(navController, drawerLayout) || super.onSupportNavigateUp()
     }
-
 }

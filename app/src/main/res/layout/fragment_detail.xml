@@ -50,7 +50,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="<"
+            android:text="Previous"
             android:onClick="onPreviousPageClicked" />
 
         <!-- Button to navigate to next page -->
@@ -59,7 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=">"
+            android:text="Next"
             android:onClick="onNextPageClicked" />
     </LinearLayout>
 
