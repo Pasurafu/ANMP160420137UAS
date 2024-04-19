@@ -10,8 +10,10 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.a160420137nmpprojectuts.model.Gunpla
+import com.example.a160420137nmpprojectuts.view.GunplaAdapter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.squareup.picasso.Picasso
 
 class ListViewModel(application: Application): AndroidViewModel(application)
  {
