@@ -39,6 +39,8 @@ class ProfileFragment : Fragment() {
         // Set onClickListener for the logout button
         binding.logoutButton.setOnClickListener {
             // Handle logout logic here
+            val action = ProfileFragmentDirections.profileToLogin()
+            Navigation.findNavController(it).navigate(action)
             logout()
         }
     }
