@@ -8,7 +8,7 @@
 
     <!-- Username TextView -->
     <TextView
-        android:id="@+id/usernameTextView"
+        android:id="@+id/txtUsernameEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
@@ -20,14 +20,14 @@
 
     <!-- Email TextView -->
     <TextView
-        android:id="@+id/emailTextView"
+        android:id="@+id/txtEmailEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
         android:textSize="18sp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usernameTextView"
+        app:layout_constraintTop_toBottomOf="@id/txtUsernameEdit"
         android:layout_marginStart="16dp" />
 
     <!-- Current Password EditText -->
@@ -35,33 +35,29 @@
     <!-- New Password EditText -->
 
     <!-- Change Password Button -->
+
     <EditText
-        android:id="@+id/currentPasswordEditText"
+        android:id="@+id/txtPasswordEdit"
         android:layout_width="419dp"
         android:layout_height="99dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="40dp"
         android:hint="Current Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmailEdit" />
 
     <EditText
-        android:id="@+id/newPasswordEditText"
+        android:id="@+id/txtPasswordReentry"
         android:layout_width="419dp"
         android:layout_height="84dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:hint="New Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/currentPasswordEditText" />
+        app:layout_constraintTop_toBottomOf="@id/txtPasswordEdit" />
 
     <Button
         android:id="@+id/btnChangePassword"
@@ -71,11 +67,11 @@
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newPasswordEditText" />
+        app:layout_constraintTop_toBottomOf="@id/txtPasswordReentry" />
 
     <!-- Logout Button -->
     <Button
-        android:id="@+id/logoutButton"
+        android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"

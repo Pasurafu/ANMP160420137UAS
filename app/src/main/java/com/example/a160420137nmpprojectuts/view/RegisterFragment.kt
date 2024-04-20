@@ -30,18 +30,25 @@ class RegisterFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val username=binding.txtUsername.text.toString()
+        val password = binding.txtPassword.text.toString()
+        val reenterPassword = binding.txtReenterPassword.text.toString()
+        val email = binding.txtEmail.text.toString()
+        val firstName = binding.txtNamaDepan.text.toString()
+        val lastName = binding.txtNamaBelakang.text.toString()
+        val action1 = RegisterFragmentDirections.registerToProfile(username, email)
+
+
         dbHelper = DatabaseHelper(requireContext())
         binding.btnBack.setOnClickListener {
             val action = RegisterFragmentDirections.registerToLogin()
             Navigation.findNavController(it).navigate(action)
         }
         binding.btnRegister.setOnClickListener{
-            val username=binding.txtUsername.text.toString()
-            val password = binding.txtPassword.text.toString()
-            val reenterPassword = binding.txtReenterPassword.text.toString()
-            val email = binding.txtEmail.text.toString()
-            val firstName = binding.txtNamaDepan.text.toString()
-            val lastName = binding.txtNamaBelakang.text.toString()
+
+
+
+
             if (username.isEmpty() || password.isEmpty() || email.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || reenterPassword.isEmpty()) {
                 // Show a toast or a message indicating that all fields are required
                 Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show()

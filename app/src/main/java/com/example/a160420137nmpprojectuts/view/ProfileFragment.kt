@@ -1,61 +1,76 @@
 package com.example.a160420137nmpprojectuts.view
 
+import DatabaseHelper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.a160420137nmpprojectuts.R
-import androidx.navigation.Navigation
-
 import com.example.a160420137nmpprojectuts.databinding.FragmentProfileBinding
-import com.example.a160420137nmpprojectuts.databinding.FragmentRegisterBinding
 
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
+    private lateinit var dbHelper: DatabaseHelper
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val username = 	ProfileFragmentArgs.fromBundle(requireArguments()).username
+        val email = 	ProfileFragmentArgs.fromBundle(requireArguments()).email
+        binding.txtUsernameEdit.text = "$username"
 
-        // Set onClickListener for the change password button
-       binding.btnChangePassword.setOnClickListener {
-            // Handle change password logic here
-            // For example, you can get the current password and new password from EditText views
-            val currentPassword =        binding.currentPasswordEditText.text.toString()
-            val newPassword =       binding. newPasswordEditText.text.toString()
+        binding.txtEmailEdit.text = "$email"
+        dbHelper = DatabaseHelper(requireContext())
 
-            // Call a function to change the password
-            changePassword(currentPassword, newPassword)
+        binding.btnChangePassword.setOnClickListener {
+            changePassword()
         }
 
-        // Set onClickListener for the logout button
-        binding.logoutButton.setOnClickListener {
-            // Handle logout logic here
-            val action = ProfileFragmentDirections.profileToLogin()
-            Navigation.findNavController(it).navigate(action)
+        binding.btnLogout.setOnClickListener {
             logout()
         }
     }
 
-    private fun changePassword(currentPassword: String, newPassword: String) {
-        // Implement the logic to change the password here
-        // You can use Firebase Auth, Retrofit, or any other method to communicate with your backend
-        // For demonstration purposes, let's just log the passwords to the console
-        println("Current Password: $currentPassword, New Password: $newPassword")
+    private fun changePassword() {
+        val newPassword = binding.txtPasswordEdit.text.toString()
+        val confirmPassword = binding.txtPasswordReentry.text.toString()
+
+        if (newPassword.isNotEmpty() && confirmPassword.isNotEmpty()) {
+            if (newPassword == confirmPassword) {
+                val updated = dbHelper.updatePassword(newPassword)
+                if (updated) {
+                    showToast("Password changed successfully")
+                    binding.txtPasswordEdit.text.clear()
+                    binding.txtPasswordReentry.text.clear()
+                } else {
+                    showToast("Failed to change password")
+                }
+            } else {
+                showToast("Passwords do not match")
+            }
+        } else {
+            showToast("Please fill in all fields")
+        }
     }
 
     private fun logout() {
         // Implement the logout logic here
-        // For example, you can clear user session, navigate to the login screen, etc.
         // For demonstration purposes, let's just print a message to the console
         println("User logged out")
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }

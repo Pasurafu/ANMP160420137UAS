@@ -40,6 +40,20 @@ class DatabaseHelper(context: Context) :
         db.execSQL(createLoginTable)
         db.execSQL(createRetypePasswordTable)
     }
+    fun updatePassword(newPassword: String): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COLUMN_PASSWORD, newPassword)
+
+        // Updating password
+        val rowsAffected = db.update(TABLE_LOGIN, values, "$COLUMN_ID = ?", arrayOf("1"))
+
+        // Closing database connection
+        db.close()
+
+        // Return true if rows are affected (password updated), otherwise false
+        return rowsAffected > 0
+    }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_LOGIN")

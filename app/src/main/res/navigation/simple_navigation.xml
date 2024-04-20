@@ -16,6 +16,9 @@
         <action
             android:id="@+id/loginToHome"
             app:destination="@id/itemHome" />
+        <action
+            android:id="@+id/loginToProfile"
+            app:destination="@id/itemProfile" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -29,6 +32,9 @@
         <action
             android:id="@+id/registerToHome"
             app:destination="@id/itemHome" />
+        <action
+            android:id="@+id/registerToProfile"
+            app:destination="@id/itemProfile" />
 
     </fragment>
     <fragment
@@ -56,6 +62,12 @@
         <action
             android:id="@+id/profileToLogin"
             app:destination="@id/loginFragment" />
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
