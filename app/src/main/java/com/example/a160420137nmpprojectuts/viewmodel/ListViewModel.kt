@@ -10,18 +10,28 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.a160420137nmpprojectuts.model.Gunpla
+import com.example.a160420137nmpprojectuts.model.GunplaDatabase
+
 import com.example.a160420137nmpprojectuts.view.GunplaAdapter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class ListViewModel(application: Application): AndroidViewModel(application)
+class ListViewModel(application: Application): AndroidViewModel(application), CoroutineScope
  {
     val gunplaLD = MutableLiveData<ArrayList<Gunpla>>()
     val gunplaLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
+     private var job = Job()
+     override val coroutineContext: CoroutineContext
+         get() = job + Dispatchers.IO
 
 
     fun refresh() {
@@ -30,6 +40,14 @@ class ListViewModel(application: Application): AndroidViewModel(application)
         gunplaLoadErrorLD.value = false
         loadingLD.value = true
         queue = Volley.newRequestQueue(getApplication() )
+        launch {
+            val db = GunplaDatabase.buildDatabase(
+                getApplication()
+            )
+
+            gunplaLD.postValue(db.GunplaDao().selectAllGunpla())
+            loadingLD.postValue(false)
+        }
 
 
         val url = "http://10.0.2.2/gunpla/gunpla.json"
@@ -63,6 +81,16 @@ class ListViewModel(application: Application): AndroidViewModel(application)
          queue?.cancelAll(TAG)
      }
 
+     fun clearTask(gunpla: Gunpla) {
+         launch {
+             val db = GunplaDatabase.buildDatabase(
+                 getApplication()
+             )
+             db.GunplaDao().deleteGunpla(gunpla)
+
+             gunplaLD.postValue(db.GunplaDao().selectAllGunpla())
+         }
+     }
 
 
 

@@ -13,7 +13,9 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
-class GunplaAdapter(val gunplaList:ArrayList<Gunpla>)
+class GunplaAdapter(val gunplaList:ArrayList<Gunpla>,
+                    val adapterOnClick : (Gunpla) -> Unit)
+
     :RecyclerView.Adapter<GunplaAdapter.GunplaViewHolder>()
 
 {

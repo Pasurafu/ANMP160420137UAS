@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.a160420137nmpprojectuts.R
 import com.example.a160420137nmpprojectuts.databinding.FragmentProfileBinding
+import com.example.a160420137nmpprojectuts.viewmodel.DetailLoginLoginViewModel
 
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var dbHelper: DatabaseHelper
-
+    private lateinit var viewModel: DetailLoginLoginViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +30,8 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val username = 	ProfileFragmentArgs.fromBundle(requireArguments()).username
         val email = 	ProfileFragmentArgs.fromBundle(requireArguments()).email
+        viewModel =
+            ViewModelProvider(this).get(DetailLoginLoginViewModel::class.java)
         binding.txtUsernameEdit.text = "$username"
 
         binding.txtEmailEdit.text = "$email"

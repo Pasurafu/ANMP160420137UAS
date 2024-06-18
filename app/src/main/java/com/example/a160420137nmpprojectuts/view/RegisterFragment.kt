@@ -10,6 +10,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.a160420137nmpprojectuts.databinding.FragmentRegisterBinding
+import com.example.a160420137nmpprojectuts.viewmodel.DetailLoginLoginViewModel
+import com.example.a160420137nmpprojectuts.viewmodel.LoginLoginViewModel
+
 //import com.example.a160420137nmpprojectuts.model.User
 //import com.example.a160420137nmpprojectuts.viewmodel.UserViewModel
 
@@ -18,6 +21,9 @@ import com.example.a160420137nmpprojectuts.databinding.FragmentRegisterBinding
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var dbHelper: DatabaseHelper
+    private lateinit var viewModel:DetailLoginLoginViewModel
+
+
     // private lateinit var userViewModel: UserViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +43,11 @@ class RegisterFragment : Fragment() {
         val firstName = binding.txtNamaDepan.text.toString()
         val lastName = binding.txtNamaBelakang.text.toString()
         val action1 = RegisterFragmentDirections.registerToProfile(username, email)
+        viewModel =
+            ViewModelProvider(this).get(DetailLoginLoginViewModel::class.java)
+
+
+
 
 
         dbHelper = DatabaseHelper(requireContext())

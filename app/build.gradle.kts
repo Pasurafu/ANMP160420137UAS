@@ -3,6 +3,9 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("androidx.navigation.safeargs.kotlin")
 
+    id("kotlin-kapt")
+
+
 }
 
 android {
@@ -60,6 +63,10 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation ("androidx.room:room-runtime:2.5.1")
+    implementation ("androidx.room:room-ktx:2.5.1")
+    kapt ("androidx.room:room-compiler:2.5.1")
+
 
 
 }
