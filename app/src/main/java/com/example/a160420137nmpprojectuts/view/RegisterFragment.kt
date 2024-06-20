@@ -85,7 +85,9 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(requireContext(), "Failed to register, please try again", Toast.LENGTH_SHORT).show()
             }
 
+
     }
+
 
 
 

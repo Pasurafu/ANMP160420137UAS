@@ -2,6 +2,9 @@ package com.example.a160420137nmpprojectuts.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import buildDb
+import buildDb2
 import com.example.a160420137nmpprojectuts.model.Gunpla
 import com.example.a160420137nmpprojectuts.model.GunplaDatabase
 import com.example.a160420137nmpprojectuts.model.LoginLogin
@@ -18,9 +21,7 @@ class DetailLoginLoginViewModel(application: Application)
 
     fun addTodo(list: List<LoginLogin>) {
         launch {
-            val db = LoginLoginDatabase.buildDatabase(
-                getApplication()
-            )
+            val db = buildDb2(getApplication())
             db.LoginLoginDao().insertAll(*list.toTypedArray())
         }
     }
@@ -29,3 +30,4 @@ class DetailLoginLoginViewModel(application: Application)
 
 
 }
+val LoginLoginLD = MutableLiveData<LoginLogin>()

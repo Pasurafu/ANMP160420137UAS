@@ -2,6 +2,8 @@ package com.example.a160420137nmpprojectuts.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import buildDb
+import buildDb2
 import com.example.a160420137nmpprojectuts.model.LoginLogin
 import com.example.a160420137nmpprojectuts.model.LoginLoginDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -16,10 +18,8 @@ class LoginLoginViewModel (application: Application)
 
     fun addLoginLogin(list: List<LoginLogin>) {
         launch {
-            val db = LoginLoginDatabase.buildDatabase(
-                getApplication()
-            )
-            db.LoginLoginDao().insertAll(*list.toTypedArray())
+            val db = buildDb2(getApplication())
+           db.LoginLoginDao().insertAll(*list.toTypedArray())
         }
     }
     override val coroutineContext: CoroutineContext

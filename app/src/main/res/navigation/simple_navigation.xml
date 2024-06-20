@@ -73,7 +73,11 @@
         android:id="@+id/detailFragment"
         android:name="com.example.a160420137nmpprojectuts.view.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="uuid"
+            app:argType="integer" />
+    </fragment>
 
 
 </navigation>

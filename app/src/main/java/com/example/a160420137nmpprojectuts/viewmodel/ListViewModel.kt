@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import buildDb
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -41,9 +42,7 @@ class ListViewModel(application: Application): AndroidViewModel(application), Co
         loadingLD.value = true
         queue = Volley.newRequestQueue(getApplication() )
         launch {
-            val db = GunplaDatabase.buildDatabase(
-                getApplication()
-            )
+            val db = buildDb(getApplication())
 
             gunplaLD.postValue(db.GunplaDao().selectAllGunpla())
             loadingLD.postValue(false)
@@ -91,6 +90,13 @@ class ListViewModel(application: Application): AndroidViewModel(application), Co
              gunplaLD.postValue(db.GunplaDao().selectAllGunpla())
          }
      }
+     fun fetch(uuid:Int) {
+         launch {
+             val db = buildDb(getApplication())
+             gunplaLD.value =  db.GunplaDao().selectGunpla(uuid)
+         }
+     }
+
 
 
 
