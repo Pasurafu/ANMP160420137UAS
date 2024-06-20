@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a160420137nmpprojectuts.databinding.GunplaListItemBinding
@@ -16,11 +17,11 @@ import java.lang.Exception
 class GunplaAdapter(val gunplaList:ArrayList<Gunpla>,
                     val adapterOnClick : (Gunpla) -> Unit)
 
-    :RecyclerView.Adapter<GunplaAdapter.GunplaViewHolder>()
+    :RecyclerView.Adapter<GunplaAdapter.GunplaViewHolder>(),GunplaEditClick
 
 {
-    class GunplaViewHolder(var binding: GunplaListItemBinding)
-        :RecyclerView.ViewHolder(binding.root) {
+    class GunplaViewHolder(var view: GunplaListItemBinding)
+        :RecyclerView.ViewHolder(view.root) {
 
 
     }
@@ -29,17 +30,40 @@ class GunplaAdapter(val gunplaList:ArrayList<Gunpla>,
        val binding = GunplaListItemBinding.inflate(LayoutInflater.from(parent.context),
            parent,false)
         return GunplaViewHolder(binding)
+
     }
+    override fun onBindViewHolder(parent: ViewGroup, position: Int):GunplaViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+
+        val view = GunplaListItemBinding.inflate(
+            inflater, parent,
+            false
+        )
+        return GunplaViewHolder(view)
+    }
+    override fun onBindViewHolder(holder: GunplaViewHolder, position: Int) {
+        holder.view.gunpla = gunplaList[position]
+
+        holder.view.editListener = this
+    }
+
 
     override fun getItemCount(): Int {
         return gunplaList.size
     }
 
-    override fun onBindViewHolder(holder: GunplaViewHolder, position: Int) {
-        holder.binding.txtID.text=gunplaList[position].id
-        holder.binding.txtName.text=gunplaList[position].name
-        holder.binding.txtDescription.text=gunplaList[position].descr
-        holder.binding.btnDetail.setOnClickListener{
+    override fun onGunplaEditClick(v: View) {
+        val uuid = v.tag.toString().toInt()
+        val action = HomeFragmentDirections.homeToDetail(uuid)
+        Navigation.findNavController(v).navigate(action)
+    }
+
+
+}
+      /*  holder.view.txtID.text=gunplaList[position].id
+        holder.view.txtName.text=gunplaList[position].name
+        holder.view.txtDescription.text=gunplaList[position].descr
+        holder.view.btnDetail.setOnClickListener{
             val action = HomeFragmentDirections.homeToDetail(gunplaList[position].uuid)
             Navigation.findNavController(it).navigate(action)
 
@@ -70,6 +94,6 @@ class GunplaAdapter(val gunplaList:ArrayList<Gunpla>,
         notifyDataSetChanged()
     }
 
+*/
 
 
-}

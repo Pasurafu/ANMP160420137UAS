@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="Gunpla"
+            type="com.example.a160420137nmpprojectuts.model.Gunpla" />
+    </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <!-- Photo of the news -->
     <ImageView
@@ -17,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageViewGunpla"
-        android:text="Title"
+        android:text="@{Gunpla.name}"
         android:textSize="24sp"
         android:textStyle="bold"
         android:padding="16dp" />
@@ -31,7 +38,7 @@
         android:paddingStart="16dp"
         android:paddingTop="8dp"
         android:paddingEnd="16dp"
-        android:text="Description"
+        android:text="@{Gunpla.descr}"
         android:textSize="18sp" />
 
     <!-- ViewPager for multi-page content -->
@@ -64,3 +71,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+</layout>

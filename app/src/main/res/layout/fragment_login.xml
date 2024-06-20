@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="LoginLogin"
+            type="com.example.a160420137nmpprojectuts.model.LoginLogin" />
+    </data>
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.LoginFragment">
@@ -31,7 +37,7 @@
             android:layout_marginEnd="89dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Name"
+            android:text="@{LoginLogin.username}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.735"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +54,7 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:singleLine="true"
+            android:text="@{LoginLogin.password}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.758"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,3 +88,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
+</layout>
