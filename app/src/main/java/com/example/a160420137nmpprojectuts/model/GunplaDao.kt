@@ -19,4 +19,7 @@ interface GunplaDao {
 
     @Delete
     fun deleteGunpla(todo:Gunpla)
+    @Query("UPDATE gunpla SET name=:name, descr=:desc, url=:url WHERE uuid = :id")
+            suspend fun update(name:String, desc:String,url:String , id:Int)
+
 }

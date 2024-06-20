@@ -16,7 +16,12 @@ interface LoginLoginDao {
     @Query("SELECT * FROM loginlogin WHERE uuid= :id")
     fun selectLoginLogin(id:Int): LoginLogin
 
+
     @Delete
     fun deleteLoginLogin(loginLogin:LoginLogin)
+    @Query("UPDATE loginlogin SET username=:username, password=:password,email=:email, namaDepan=:namaDepan,namaBelakang=:namaBelakang WHERE uuid = :id")
+            suspend fun update(username:String, password:String,email:String,namaDepan:String,namaBelakang:String , id:Int)
+
+
 
 }

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.a160420137nmpprojectuts.databinding.FragmentRegisterBinding
+import com.example.a160420137nmpprojectuts.model.LoginLogin
 import com.example.a160420137nmpprojectuts.viewmodel.DetailLoginLoginViewModel
 import com.example.a160420137nmpprojectuts.viewmodel.LoginLoginViewModel
 
@@ -56,6 +57,19 @@ class RegisterFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
         }
         binding.btnRegister.setOnClickListener{
+var loginLogin= LoginLogin(
+            binding.txtUsername.text.toString(),
+             binding.txtPassword.text.toString(),
+
+          binding.txtEmail.text.toString()
+                  ,
+          binding.txtNamaDepan.text.toString(),
+           binding.txtNamaBelakang.text.toString())
+val list= listOf(loginLogin)
+            viewModel.addLoginLogin(list
+                )
+            Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
+            Navigation.findNavController(it).popBackStack()
 
 
 

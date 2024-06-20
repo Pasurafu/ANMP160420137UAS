@@ -38,13 +38,14 @@ class GunplaAdapter(val gunplaList:ArrayList<Gunpla>,
     override fun onBindViewHolder(holder: GunplaViewHolder, position: Int) {
         holder.binding.txtID.text=gunplaList[position].id
         holder.binding.txtName.text=gunplaList[position].name
-        holder.binding.txtDescription.text=gunplaList[position].desc
+        holder.binding.txtDescription.text=gunplaList[position].descr
         holder.binding.btnDetail.setOnClickListener{
-            val action = HomeFragmentDirections.homeToDetail()
+            val action = HomeFragmentDirections.homeToDetail(gunplaList[position].uuid)
             Navigation.findNavController(it).navigate(action)
 
 
         }
+
         val picasso = Picasso.Builder(holder.itemView.context)
         picasso.listener { picasso, uri, exception ->
             exception.printStackTrace()

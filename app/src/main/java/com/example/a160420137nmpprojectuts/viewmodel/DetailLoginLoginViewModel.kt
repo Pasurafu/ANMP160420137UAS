@@ -19,15 +19,23 @@ class DetailLoginLoginViewModel(application: Application)
     : AndroidViewModel(application), CoroutineScope {
     private val job = Job()
 
-    fun addTodo(list: List<LoginLogin>) {
+    fun addLoginLogin(list: List<LoginLogin>) {
         launch {
             val db = buildDb2(getApplication())
             db.LoginLoginDao().insertAll(*list.toTypedArray())
         }
     }
+    fun update(username:String, password:String,email:String,namaDepan:String,namaBelakang:String , id:Int) {
+        launch {
+            val db = buildDb2(getApplication())
+            db.LoginLoginDao().update(username, password, email,namaDepan,namaBelakang, id)
+        }
+    }
+
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
 
 }
 val LoginLoginLD = MutableLiveData<LoginLogin>()
+

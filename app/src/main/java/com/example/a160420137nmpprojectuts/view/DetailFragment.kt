@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.a160420137nmpprojectuts.R
 import com.example.a160420137nmpprojectuts.databinding.FragmentDetailBinding
@@ -33,6 +34,10 @@ class DetailFragment : Fragment() {
 
         // Initialize the view model
         viewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
+        val uuid = DetailFragmentArgs.fromBundle(requireArguments()).uuid
+        viewModel.fetch(uuid)
+        observeViewModel()
+
 
         // Observe the LiveData for gunpla list
         viewModel.gunplaLD.observe(viewLifecycleOwner) { gunplaList ->
@@ -49,10 +54,10 @@ class DetailFragment : Fragment() {
 
                 // Populate views with data from the Gunpla object
                 binding.txtNameD.text = gunpla.name
-                binding.txtDescD.text = gunpla.desc
+                binding.txtDescD.text = gunpla.descr
                 // Use an image loading library like Glide or Picasso to load the image
                 // For now, let's just assume you have an ImageView named imageViewGunpla
-                Glide.with(this).load(gunpla.imageUrl).into(binding.imageViewGunpla)
+                Glide.with(this).load(gunpla.url).into(binding.imageViewGunpla)
             }
         }
 
@@ -75,6 +80,14 @@ class DetailFragment : Fragment() {
             currentGunplaIndex++
             viewModel.refresh()
         }
+    }
+
+    private fun observeViewModel() {
+        viewModel.gunplaLD.observe(viewLifecycleOwner, Observer {
+            binding.txtNameD.setText(it.name)
+            binding.txtDescD.setText(it.descr)
+        })
+
     }
 }
 

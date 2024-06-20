@@ -16,7 +16,8 @@ import com.example.a160420137nmpprojectuts.viewmodel.ListViewModel
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: ListViewModel
-    private val studentListAdapter  = GunplaAdapter(arrayListOf())
+  //  private val studentListAdapter  = GunplaAdapter(arrayListOf())
+
 
 
     override fun onCreateView(
@@ -34,7 +35,12 @@ class HomeFragment : Fragment() {
         viewModel= ViewModelProvider(this).get(ListViewModel::class.java)
         viewModel.refresh()
         binding.recyclerView.layoutManager=LinearLayoutManager(context)
-        binding.recyclerView.adapter=studentListAdapter
+       // binding.recyclerView.adapter=studentListAdapter
+        observeViewModel()
+        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+
+        val uuid = DetailFragmentArgs.fromBundle(requireArguments()).uuid
+        viewModel.fetch(uuid)
         observeViewModel()
 
         binding.swiperefreshLayout.setOnRefreshListener {
@@ -49,7 +55,9 @@ class HomeFragment : Fragment() {
     fun observeViewModel()
     {
         viewModel.gunplaLD.observe(viewLifecycleOwner, Observer {
-            studentListAdapter.updateGunplaList(it)
+            //studentListAdapter.updateGunplaList(it)
+
+
         })
         viewModel.gunplaLoadErrorLD.observe(viewLifecycleOwner, Observer {if(it == true) {
             binding.txtError?.visibility = View.VISIBLE

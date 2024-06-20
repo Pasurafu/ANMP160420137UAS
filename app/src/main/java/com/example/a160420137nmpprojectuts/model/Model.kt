@@ -17,7 +17,8 @@ data class LoginLogin(
     @ColumnInfo(name="namaDepan")
     var namaDepan:String,
     @ColumnInfo(name="namaBelakang")
-    var namaBelakang:String){
+    var namaBelakang:String
+){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0
 }
@@ -28,10 +29,12 @@ data class Gunpla(
     var id:String,
     @ColumnInfo(name="name")
     var name:String,
-    @ColumnInfo(name="desc")
-    var desc:String,
+    @ColumnInfo(name="descr")
+    var descr:String,
     @ColumnInfo(name="url")
-    var imageUrl:String
+    var url:String,
+
+
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int =0

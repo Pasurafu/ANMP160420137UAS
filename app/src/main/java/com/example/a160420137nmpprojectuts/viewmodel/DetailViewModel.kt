@@ -22,6 +22,13 @@ class DetailViewModel(application: Application)
             db.GunplaDao().insertAll(*list.toTypedArray())
         }
     }
+    fun update(name:String, descr:String,url:String , id:Int) {
+        launch {
+            val db = buildDb(getApplication())
+            db.GunplaDao().update(name, descr, url, id)
+        }
+    }
+
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
